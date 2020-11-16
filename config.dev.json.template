@@ -1,0 +1,6 @@
+{
+    "issuer-uri": "https://atenant.okta.com/oauth2/default",
+    "audience": "api://default",
+    "client-id": "",
+    "client-secret": "",
+}

@@ -1,0 +1,54 @@
+service: okta-techchallenge
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: ${opt:stage, 'dev'}
+  environment:
+    ISSUER: ${file(./config.${opt:stage, self:provider.stage, 'dev'}.json):issuer-uri}
+    AUDIENCE: ${file(./config.${opt:stage, self:provider.stage, 'dev'}.json):audience}
+    OKTA_CLIENT_ID: ${file(./config.${opt:stage, self:provider.stage, 'dev'}.json):client-id}
+
+functions:
+  #Authorizers
+  auth:
+    handler: authorizer/handler.auth
+  authAdmin:
+    handler: authorizer/handler.admin
+  authSensitive:
+    handler: authorizer/handler.sensitive
+
+  #Dummy API
+  public:
+    handler: dummyapi.public
+    events:
+      - http:
+          path: /
+          method: get
+  authenticated:
+    handler: dummyapi.authenticated
+    events:
+      - http:
+          path: /authenticated
+          method: get
+          authorizer:
+            name: auth
+            identityValidationExpression: ^Bearer [-0-9a-zA-z\.]*$
+  admin:
+    handler: dummyapi.admin
+    events:
+      - http:
+          path: /admin
+          method: get
+          authorizer:
+            name: authAdmin
+            identityValidationExpression: ^Bearer [-0-9a-zA-z\.]*$
+  sensitive:
+    handler: dummyapi.sensitive
+    events:
+      - http:
+          path: /sensitive
+          method: get
+          authorizer:
+            name: authSensitive
+            identityValidationExpression: ^Bearer [-0-9a-zA-z\.]*$
