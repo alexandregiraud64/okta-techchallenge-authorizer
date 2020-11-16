@@ -15,7 +15,7 @@ protect.
  * Clone your repo locally
  * Install and configure serverless if not already installed (AWS quickstart
    guide
-   (here)[https://www.serverless.com/framework/docs/providers/aws/guide/quick-start/])
+   [here](https://www.serverless.com/framework/docs/providers/aws/guide/quick-start/))
  * Copy the `config.dev.json.template` and rename to `config.dev.json`
  * Fill in the values in `config.dev.json` with those of your environment
  * `serverless deploy` to launch your service
