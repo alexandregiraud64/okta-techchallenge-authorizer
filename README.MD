@@ -20,21 +20,26 @@ protect.
  * Fill in the values in `config.dev.json` with those of your environment
  * `serverless deploy` to launch your service
 
+ A Postman collection has been provided to allow you to easily call the dummy API.
+
 ## The challenge
 This repo contains a stub file for an OAuth authorizer (`/authorizer/handler.js`)
  which protects access to the dummy API. Your task is to build out this
  authorizer to validate access tokens minted by your Okta tenant's authorization server.
 
-There are three steps to this each of which will require a different approach:
-* Authenticated: Implement handler.auth so to verify the provided access token.
-* Admin: Implement handler.admin to verify the provided access token has a given
+There are three tasks each of which will require a different approach:
+* Authenticated: Implement handler.auth to verify the provided access token is valid.
+* Admin: Implement handler.admin to verify the provided access token is valid and has a given
   scope.
 * Sensitive: Implement handler.sensitive to introspect the provided access
-  token.
+  token to ensure it is not revoked.
 
 ## The interview
 
-During the interview you will be asked to demonstrate each of the calls to your
-service, explain how you implemented the authorizer and why each step requires a
-different approach.
+During the interview you will be asked to:
+
+- Demonstrate each of the calls to your service
+- Explain how you implemented the authorizer
+- Why each step requires a different approach and what the benefits and
+  drawbacks are.
 

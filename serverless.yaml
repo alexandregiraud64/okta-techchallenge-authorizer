@@ -7,7 +7,8 @@ provider:
   environment:
     ISSUER: ${file(./config.${opt:stage, self:provider.stage, 'dev'}.json):issuer-uri}
     AUDIENCE: ${file(./config.${opt:stage, self:provider.stage, 'dev'}.json):audience}
-    OKTA_CLIENT_ID: ${file(./config.${opt:stage, self:provider.stage, 'dev'}.json):client-id}
+    OKTA_CLIENT_ID: ${file(./config.${opt:stage, self:provider.stage,'dev'}.json):client-id}
+    OKTA_CLIENT_SECRET: ${file(./config.${opt:stage, self:provider.stage, 'dev'}.json):client-secret}
 
 functions:
   #Authorizers
@@ -33,6 +34,7 @@ functions:
           method: get
           authorizer:
             name: auth
+            identitySource: method.request.header.Authorization
             identityValidationExpression: ^Bearer [-0-9a-zA-z\.]*$
   admin:
     handler: dummyapi.admin
@@ -42,6 +44,7 @@ functions:
           method: get
           authorizer:
             name: authAdmin
+            identitySource: method.request.header.Authorization
             identityValidationExpression: ^Bearer [-0-9a-zA-z\.]*$
   sensitive:
     handler: dummyapi.sensitive
@@ -51,4 +54,6 @@ functions:
           method: get
           authorizer:
             name: authSensitive
+            identitySource: method.request.header.Authorization
             identityValidationExpression: ^Bearer [-0-9a-zA-z\.]*$
+            resultTtlInSeconds: 0
