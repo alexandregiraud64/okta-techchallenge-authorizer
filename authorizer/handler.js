@@ -6,10 +6,10 @@ exports.auth = function (event,context){
     //context.fail('Unauthorized')
 }
 
-exports.admin = function (event,context){
+exports.bookings = function (event,context){
     let bearer = event.authorizationToken
     //TASK 2
-    //implement verification with a given scope
+    //implement verification with a scope on 'bookings:read'
     context.succeed(generateAuthResponse("Unknown User", 'Allow',  event.methodArn))
     //context.fail('Unauthorized')
 }

@@ -14,8 +14,8 @@ functions:
   #Authorizers
   auth:
     handler: authorizer/handler.auth
-  authAdmin:
-    handler: authorizer/handler.admin
+  authBookings:
+    handler: authorizer/handler.bookings
   authSensitive:
     handler: authorizer/handler.sensitive
 
@@ -36,14 +36,14 @@ functions:
             name: auth
             identitySource: method.request.header.Authorization
             identityValidationExpression: ^Bearer [-0-9a-zA-z\.]*$
-  admin:
-    handler: dummyapi.admin
+  bookings:
+    handler: dummyapi.bookings
     events:
       - http:
-          path: /admin
+          path: /bookings
           method: get
           authorizer:
-            name: authAdmin
+            name: authBookings
             identitySource: method.request.header.Authorization
             identityValidationExpression: ^Bearer [-0-9a-zA-z\.]*$
   sensitive:

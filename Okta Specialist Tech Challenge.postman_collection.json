@@ -23,7 +23,8 @@
 						"dev",
 						""
 					]
-				}
+				},
+				"description": "This is a test call to allow you to validate your deployment."
 			},
 			"response": []
 		},
@@ -52,7 +53,8 @@
 						"dev",
 						"authenticated"
 					]
-				}
+				},
+				"description": "This call should be made with a valid OAuth bearer token"
 			},
 			"response": []
 		},
@@ -64,7 +66,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJraWQiOiJVY25OM3g4SENEZ0YyZThpQVd0YjhWRHh6SzlZcXNvM0Q5My1SeDlJMm1BIiwiYWxnIjoiUlMyNTYifQ.eyJ2ZXIiOjEsImp0aSI6IkFULl9xbnpKYUlNTUZsUXFkdE52MFpRY1hQSlczaDdHQUFhWHIxQmtWOFRDUG8iLCJpc3MiOiJodHRwczovL2FjY291bnQuZXhhbXBseWRldi5jby51ay9vYXV0aDIvZGVmYXVsdCIsImF1ZCI6ImFwaTovL2RlZmF1bHQiLCJpYXQiOjE2MDc1NDczOTUsImV4cCI6MTYwNzU1MDk5NSwiY2lkIjoiMG9hNXN6cnQ3WDNGMldCWlIweDYiLCJ1aWQiOiIwMHUzN20yaDhwMFd5bm5IajB4NiIsInNjcCI6WyJhZG1pbiIsImVtYWlsIiwib3BlbmlkIl0sInN1YiI6ImFuZHkubWFyY2hAb2t0YS5jb20ifQ.UKbDBscCGMSI73HS4s_HzmRqRNTCNR19vxlM0pbkrblc0NCP4nyUx-QhfUMGPPYZYpgIusHB0G-t76lRENbejCR0yhp55Cp-mNNcPrypmOwMtgHeCmqrA18HL2ODVmQLwNX1os1JEc8CA8nF9Ihw5kDLTIsMtGaid6bcmpokhix6Mgilp-gnVUZZ4GE7i0m0CLoJ0kT2COD9A95rRbVdgufeSt7ca8WCqrkFOEUs35xaxlqbLT8Lzz6wgG35i8ZXY9OxJpFIxu7XmqRrOJOpwp8FGlLms_woKKLVqH9ZSeQV7ctVihmer-pk9cTgmOghD1Z_1e1goP5cdnWVrmMF1A",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
@@ -81,19 +83,20 @@
 						"dev",
 						"sensitive"
 					]
-				}
+				},
+				"description": "This call returns the user's profile and should be introspected."
 			},
 			"response": []
 		},
 		{
-			"name": "Admin",
+			"name": "Bookings",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJraWQiOiJVY25OM3g4SENEZ0YyZThpQVd0YjhWRHh6SzlZcXNvM0Q5My1SeDlJMm1BIiwiYWxnIjoiUlMyNTYifQ.eyJ2ZXIiOjEsImp0aSI6IkFULl9xbnpKYUlNTUZsUXFkdE52MFpRY1hQSlczaDdHQUFhWHIxQmtWOFRDUG8iLCJpc3MiOiJodHRwczovL2FjY291bnQuZXhhbXBseWRldi5jby51ay9vYXV0aDIvZGVmYXVsdCIsImF1ZCI6ImFwaTovL2RlZmF1bHQiLCJpYXQiOjE2MDc1NDczOTUsImV4cCI6MTYwNzU1MDk5NSwiY2lkIjoiMG9hNXN6cnQ3WDNGMldCWlIweDYiLCJ1aWQiOiIwMHUzN20yaDhwMFd5bm5IajB4NiIsInNjcCI6WyJhZG1pbiIsImVtYWlsIiwib3BlbmlkIl0sInN1YiI6ImFuZHkubWFyY2hAb2t0YS5jb20ifQ.UKbDBscCGMSI73HS4s_HzmRqRNTCNR19vxlM0pbkrblc0NCP4nyUx-QhfUMGPPYZYpgIusHB0G-t76lRENbejCR0yhp55Cp-mNNcPrypmOwMtgHeCmqrA18HL2ODVmQLwNX1os1JEc8CA8nF9Ihw5kDLTIsMtGaid6bcmpokhix6Mgilp-gnVUZZ4GE7i0m0CLoJ0kT2COD9A95rRbVdgufeSt7ca8WCqrkFOEUs35xaxlqbLT8Lzz6wgG35i8ZXY9OxJpFIxu7XmqRrOJOpwp8FGlLms_woKKLVqH9ZSeQV7ctVihmer-pk9cTgmOghD1Z_1e1goP5cdnWVrmMF1A",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
@@ -101,19 +104,19 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://{{service-uri}}/dev/admin",
+					"raw": "https://{{service-uri}}/dev/bookings",
 					"protocol": "https",
 					"host": [
 						"{{service-uri}}"
 					],
 					"path": [
 						"dev",
-						"admin"
+						"bookings"
 					]
-				}
+				},
+				"description": "This call returns the user's bookings.\nThe provided token should contain the scope \"bookings:read\""
 			},
 			"response": []
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }

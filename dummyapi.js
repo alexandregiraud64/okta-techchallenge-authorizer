@@ -3,7 +3,7 @@ module.exports.public = async event => {
         statusCode: 200,
         body: JSON.stringify(
             {
-                message: 'This is public content, anyone can read.',
+                message: 'Awesome Travel Inc can take you anywhere',
             },
             null,
             2
@@ -12,12 +12,11 @@ module.exports.public = async event => {
 }
 
 module.exports.authenticated = async event => {
-    console.log("authentd")
     return {
         statusCode: 200,
         body: JSON.stringify(
             {
-                message: 'This is authenticated content, only users can read.',
+                message: 'Welcome registered user, where do you want to go today?',
             },
             null,
             2
@@ -25,12 +24,16 @@ module.exports.authenticated = async event => {
     }
 }
 
-module.exports.admin = async event => {
+module.exports.bookings = async event => {
     return {
         statusCode: 200,
         body: JSON.stringify(
             {
-                message: 'This is an admin scoped request, only tokens with "admin" scope may make this call.',
+                message: 'Here are your bookings.',
+                tickets: [
+                    {id:123, from:"LHR", to: "SFO", seatPref: "window" },
+                    {id:456, from: "AMS", to: "LAS", seatPref: "aisle", upgrade: "yes" }
+                ]
             },
             null,
             2
@@ -43,7 +46,14 @@ module.exports.sensitive = async event => {
         statusCode: 200,
         body: JSON.stringify(
             {
-                message: 'This is an introspected request, revoked tokens are not accepted.',
+                message: 'Here is your profile',
+                profile: {
+                    title: "Mr",
+                    givenName: "Dade",
+                    familyName: "Murphy",
+                    passportNumber: "533301334",
+                    nationality: "American"
+                }
             },
             null,
             2
